@@ -21,11 +21,6 @@ class Hey
     def response4(key, name)
       `curl -X POST --data-urlencode 'payload={"channel": "#{channel}", "username": "#{name}", "text": "#{Faker::Lorem.paragraph}", "icon_emoji": ":#{key}:"}' #{url}`
     end
-
-    def response5(key, name)
-
-      `curl -X POST --data-urlencode 'payload={"channel": "#{channel}", "username": "#{name}", "text": "ALL HANDS MEETING 12804 for conference", "icon_emoji": ":#{key}:"}' #{url}`
-    end
   end
 end
 
@@ -72,16 +67,14 @@ end
     name = Faker::Name.name
 
     [
-      # Proc.new { Hey.send(:response1, key, name) },
+      Proc.new { Hey.send(:response1, key, name) },
       # Proc.new { Hey.send(:response2, key, name) },
       # Proc.new { Hey.send(:response3, key, name) },
       # Proc.new { Hey.send(:response4, key, name) }
-      Proc.new { Hey.send(:response5, key, name) }
     ].sample.call
   end
 
   def url
-    "http://www.google.com"
+    "INSERT YOUR SLACK URL HERE"
   end
 end
-
